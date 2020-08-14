@@ -17,7 +17,13 @@ router.post('/register', async function(req, res) {
   let salt = await bcrypt.genSalt(10) ;
    user.password = await bcrypt.hash(user.password,salt) ;
   await user.save() ;
-  return res.send(_.pick(user,["name","email","role"])) ;
+  let token1 = token.sign({_id:user._id,name:user.name,role:user.role},config.get("getToken"))  ;
+  let datatoreturn={
+    name:user.name ,
+    email:user.email,
+    token:user.token1
+  }
+  return res.send(datatoreturn) ;
 });
 router.post('/login',async function (req,res) {
   console.log(req.body.email) ;
