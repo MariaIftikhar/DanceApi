@@ -1,0 +1,5 @@
+{
+
+    "db": "mongodb+srv://maria:merryvicky@cluster0.x4igt.mongodb.net/DanceTypes?authSource=admin&replicaSet=atlas-ouw1ml-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true" ,
+    "getToken" :"SomePrivate"
+}
