@@ -6,9 +6,13 @@ const auth = require('../../middlewares/auth');
 const admin = require('../../middlewares/admin');
 
 router.get('/', async function(req, res) {
-    console.log(req.user) ;
-  let types = await Types.find() ;
-    return res.send(types);
+  let page =Number(req.query.page?req.query.page:1) ;
+  let perPage =Number(req.query.perPag?perPag:10) ;
+  let skipRecords = perPage*(page-1) ;
+  console.log(req.user) ;
+  let types = await Types.find().skip(skipRecords).limit(perPage) ;
+  let total = await Types.countDocuments() ;
+    return res.send({total,types});
   });
   router.get("/:id", async(req,res)=>{
       try {
